@@ -14,6 +14,17 @@ def dfs(graph,start,visited=[]):
             dfs(graph,i,visited)
     return visited
 
+def ispathImproved(graph,start,end):
+    q=[start]
+    visited=[]
+    while q:
+        temp=q.pop(0)
+        visited.append(temp)
+        if (end in visited) or (end in q):
+            return "Yes"
+        for i in graph[temp]:
+            q.append(i)
+    return "No"
 
 graph={
     1:[2,3],
@@ -22,4 +33,5 @@ graph={
     4:[1,2,3]
     }
 
-print ispath(graph,3,4)
+#print ispath(graph,3,4)
+print ispathImproved(graph,3,4)
