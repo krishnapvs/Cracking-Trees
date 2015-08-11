@@ -24,3 +24,49 @@ class BinTree:
                 self.right=BinTree(key)
             else:
                 self.right.addNode(key)
+def inorder(tree):
+    if not tree:
+        return
+    else:
+        print tree.key
+        inorder(tree.left)
+        inorder(tree.right)
+
+def bin(l,start,end,n1=None):
+    if end < start:
+        return
+    else:
+        mid=(start+end)/2
+        if not n1:
+            n1=BinTree(l[mid])
+        else:
+            n1.addNode(l[mid])
+        bin(l,start,mid-1,n1)
+        bin(l,mid+1,end,n1)
+    return n1
+
+def llist(tree,n=0,l=[]):
+    if tree==None:
+        return
+    else:
+        print n
+        if l[n]==None:
+            l[n]=Node(tree.key)
+        else:
+            temp=l[n]
+            while(temp.next):
+                temp=temp.next
+            temp.next=Node(tree.key)
+        llist(tree.left,n+1,l)
+        llist(tree.right,n+1,l)
+        return l
+
+a=[i for i in range(20)]
+l=[]
+for i in range(10):
+    l.append(None)
+
+tree=bin(a,0,19)
+inorder(tree)
+l=llist(tree,0,l)
+
