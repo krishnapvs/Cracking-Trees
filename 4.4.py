@@ -24,6 +24,7 @@ class BinTree:
                 self.right=BinTree(key)
             else:
                 self.right.addNode(key)
+
 def inorder(tree):
     if not tree:
         return
